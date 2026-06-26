@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: vyncrafts
+    runtime: node
+    plan: free
+    branch: main
+    buildCommand: pnpm install --frozen-lockfile && pnpm run build && npm ci --prefix backend
+    startCommand: npm run start --prefix backend
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: SERVE_STATIC
+        value: true
+      - key: CONTACT_NOTIFY_EMAIL
+        value: team@vyncrafts.com
+      - key: CONTACT_FROM_EMAIL
+        value: VynCrafts <team@vyncrafts.com>
+      - key: ALLOWED_ORIGIN
+        value: https://vyncrafts.com,https://www.vyncrafts.com
+      - key: RESEND_API_KEY
+        sync: false

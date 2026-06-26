@@ -46,9 +46,39 @@ const submissionsPath = path.join(backendDir, 'submissions.json')
 const notifyEmail = process.env.CONTACT_NOTIFY_EMAIL ?? 'team@vyncrafts.com'
 const fromEmail = process.env.CONTACT_FROM_EMAIL ?? 'VynCrafts <onboarding@resend.dev>'
 const resendApiKey = process.env.RESEND_API_KEY
+const distPath = path.resolve(backendDir, '..', 'dist')
+const distIndex = path.join(distPath, 'index.html')
+const shouldServeStatic =
+  process.env.SERVE_STATIC === 'true' && fs.existsSync(distIndex)
+const allowedOrigins =
+  process.env.ALLOWED_ORIGIN?.split(',').map((origin) => origin.trim()).filter(Boolean) ?? []
 
-app.use(cors())
-app.use(express.json())
+app.set('trust proxy', 1)
+
+if (allowedOrigins.length > 0) {
+  app.use(cors({ origin: allowedOrigins, methods: ['GET', 'POST'] }))
+} else if (!shouldServeStatic) {
+  app.use(cors())
+}
+
+app.use(express.json({ limit: '32kb' }))
+
+const contactRateLimit = new Map<string, { count: number; resetAt: number }>()
+const CONTACT_RATE_LIMIT = 5
+const CONTACT_RATE_WINDOW_MS = 60 * 60 * 1000
+
+function isContactRateLimited(ip: string) {
+  const now = Date.now()
+  const entry = contactRateLimit.get(ip)
+
+  if (!entry || now > entry.resetAt) {
+    contactRateLimit.set(ip, { count: 1, resetAt: now + CONTACT_RATE_WINDOW_MS })
+    return false
+  }
+
+  entry.count += 1
+  return entry.count > CONTACT_RATE_LIMIT
+}
 
 type ContactPayload = {
   name?: string
@@ -156,6 +186,14 @@ async function notifyTeam(submission: Required<ContactPayload> & { submittedAt: 
 }
 
 app.post('/api/contact', async (req, res) => {
+  const clientIp = req.ip || 'unknown'
+
+  if (isContactRateLimited(clientIp)) {
+    return res.status(429).json({
+      error: 'Too many submissions. Please try again later or contact us on WhatsApp.',
+    })
+  }
+
   const errors = validatePayload(req.body)
 
   if (errors.length > 0) {
@@ -196,13 +234,12 @@ app.post('/api/contact', async (req, res) => {
 })
 
 app.get('/api/health', (_req, res) => {
-  res.json({ status: 'ok', emailConfigured: Boolean(resendApiKey) })
+  res.json({
+    status: 'ok',
+    emailConfigured: Boolean(resendApiKey),
+    staticEnabled: shouldServeStatic,
+  })
 })
-
-const distPath = path.resolve(backendDir, '..', 'dist')
-const distIndex = path.join(distPath, 'index.html')
-const shouldServeStatic =
-  process.env.SERVE_STATIC === 'true' && fs.existsSync(distIndex)
 
 if (shouldServeStatic) {
   app.use(express.static(distPath, { index: false, maxAge: '1y', immutable: true }))

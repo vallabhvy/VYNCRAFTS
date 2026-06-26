@@ -1,38 +1,59 @@
 # VynCrafts
 
-Digital studio marketing site — vibrant editorial design with motion, custom cursor, bento services grid, and contact API.
+Digital studio marketing site — React frontend, Express contact API, and Resend email notifications.
 
-**Stack:** React 19 · Vite · Tailwind CSS · Express · Fontshare (Clash Display, Satoshi) · Google Fonts (Space Mono)
+**Stack:** React 19 · Vite · Tailwind CSS · Express · Resend
 
 ## Run locally
 
-**Frontend only** (contact form needs the API below):
-
 ```bash
 pnpm install
-pnpm run dev
+pnpm run dev          # frontend at http://localhost:5173
+pnpm run dev:api      # API at http://localhost:5000 (separate terminal)
 ```
 
-Open [http://localhost:5173](http://localhost:5173).
+Copy `backend/.env.example` to `backend/.env` and add your Resend API key.
 
-**Contact API** (required for form submissions):
-
-```bash
-cd backend
-npm install
-npm run dev
-```
-
-The Vite dev server proxies `/api` to `http://localhost:5000`. Submissions are saved to `backend/submissions.json`.
-
-Run both in separate terminals for full functionality.
-
-## Build
+## Production build
 
 ```bash
 pnpm run build
-pnpm run preview
+SERVE_STATIC=true pnpm run start
 ```
+
+Open `http://localhost:5000` — serves the built site and `/api/contact`.
+
+## Deploy to Render
+
+This repo includes a [`render.yaml`](render.yaml) blueprint for one-click deployment.
+
+1. Push this repo to GitHub: [vallabhvy/VYNCRAFTS](https://github.com/vallabhvy/VYNCRAFTS)
+2. Go to [render.com](https://render.com) → **New** → **Blueprint**
+3. Connect the `VYNCRAFTS` repository
+4. Add the secret env var **`RESEND_API_KEY`** when prompted
+5. Click **Apply** and wait for the deploy to finish
+
+Render will build the site, install the backend, and serve both from one URL.
+
+### Custom domain (`vyncrafts.com`)
+
+1. In Render → your service → **Settings** → **Custom Domains**
+2. Add `vyncrafts.com` and `www.vyncrafts.com`
+3. Add the DNS records Render shows at your domain registrar
+4. Wait for SSL to provision (usually a few minutes)
+
+### Production environment variables
+
+| Variable | Value |
+|---|---|
+| `RESEND_API_KEY` | Your Resend API key (secret) |
+| `CONTACT_NOTIFY_EMAIL` | `team@vyncrafts.com` |
+| `CONTACT_FROM_EMAIL` | `VynCrafts <team@vyncrafts.com>` |
+| `SERVE_STATIC` | `true` |
+| `NODE_ENV` | `production` |
+| `ALLOWED_ORIGIN` | `https://vyncrafts.com,https://www.vyncrafts.com` |
+
+Do **not** set `RESEND_SKIP_TLS_VERIFY` in production.
 
 ## Customize
 
