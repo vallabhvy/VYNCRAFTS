@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none">
+  <rect width="800" height="500" fill="#0D0D18"/>
+  <rect x="40" y="40" width="720" height="420" rx="12" fill="#13131A" stroke="rgba(255,255,255,0.08)"/>
+  <rect x="40" y="40" width="720" height="36" rx="12" fill="#1A1A28"/>
+  <circle cx="64" cy="58" r="6" fill="#FF6B4A" opacity="0.8"/>
+  <circle cx="84" cy="58" r="6" fill="#C8FF3E" opacity="0.8"/>
+  <circle cx="104" cy="58" r="6" fill="#5B4FFF" opacity="0.8"/>
+  <rect x="80" y="120" width="280" height="24" rx="4" fill="#5B4FFF" opacity="0.9"/>
+  <rect x="80" y="160" width="420" height="12" rx="3" fill="rgba(238,238,242,0.15)"/>
+  <rect x="80" y="184" width="360" height="12" rx="3" fill="rgba(238,238,242,0.08)"/>
+  <rect x="80" y="240" width="160" height="44" rx="22" fill="#5B4FFF"/>
+  <rect x="520" y="100" width="200" height="280" rx="8" fill="rgba(91,79,255,0.15)" stroke="rgba(91,79,255,0.3)"/>
+  <rect x="540" y="130" width="160" height="100" rx="6" fill="rgba(200,255,62,0.12)"/>
+  <text x="80" y="380" fill="#C8FF3E" font-family="system-ui,sans-serif" font-size="14" font-weight="600">HARVEST TABLE</text>
+  <text x="80" y="410" fill="#6B6B7E" font-family="system-ui,sans-serif" font-size="12">Restaurant booking experience</text>
+</svg>

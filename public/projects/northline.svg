@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none">
+  <rect width="800" height="500" fill="#100D0D"/>
+  <rect x="40" y="40" width="720" height="420" rx="12" fill="#13131A" stroke="rgba(255,255,255,0.08)"/>
+  <rect x="60" y="70" width="200" height="80" rx="8" fill="rgba(255,107,74,0.15)" stroke="rgba(255,107,74,0.3)"/>
+  <rect x="280" y="70" width="200" height="80" rx="8" fill="rgba(91,79,255,0.15)" stroke="rgba(91,79,255,0.3)"/>
+  <rect x="500" y="70" width="200" height="80" rx="8" fill="rgba(200,255,62,0.12)" stroke="rgba(200,255,62,0.25)"/>
+  <rect x="60" y="170" width="640" height="220" rx="8" fill="#1A1414"/>
+  <polyline points="100,340 180,260 260,290 340,200 420,240 500,180 580,220 660,160" stroke="#FF6B4A" stroke-width="3" fill="none"/>
+  <circle cx="180" cy="260" r="6" fill="#FF6B4A"/>
+  <circle cx="340" cy="200" r="6" fill="#FF6B4A"/>
+  <circle cx="500" cy="180" r="6" fill="#FF6B4A"/>
+  <text x="60" y="470" fill="#FF6B4A" font-family="system-ui,sans-serif" font-size="14" font-weight="600">NORTHLINE RETAIL</text>
+</svg>

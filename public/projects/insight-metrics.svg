@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none">
+  <rect width="800" height="500" fill="#100D0D"/>
+  <rect x="40" y="40" width="720" height="420" rx="12" fill="#13131A" stroke="rgba(255,255,255,0.08)"/>
+  <rect x="60" y="70" width="220" height="120" rx="8" fill="rgba(255,107,74,0.12)" stroke="rgba(255,107,74,0.25)"/>
+  <rect x="300" y="70" width="220" height="120" rx="8" fill="rgba(91,79,255,0.12)" stroke="rgba(91,79,255,0.25)"/>
+  <rect x="540" y="70" width="200" height="120" rx="8" fill="rgba(200,255,62,0.1)" stroke="rgba(200,255,62,0.2)"/>
+  <rect x="60" y="210" width="680" height="220" rx="8" fill="#1A1414"/>
+  <rect x="100" y="380" width="40" height="30" fill="#FF6B4A" opacity="0.8"/>
+  <rect x="170" y="340" width="40" height="70" fill="#FF6B4A" opacity="0.7"/>
+  <rect x="240" y="300" width="40" height="110" fill="#FF6B4A" opacity="0.7"/>
+  <rect x="310" y="260" width="40" height="150" fill="#5B4FFF" opacity="0.8"/>
+  <rect x="380" y="320" width="40" height="90" fill="#FF6B4A" opacity="0.6"/>
+  <rect x="450" y="240" width="40" height="170" fill="#5B4FFF" opacity="0.8"/>
+  <rect x="520" y="290" width="40" height="120" fill="#FF6B4A" opacity="0.6"/>
+  <rect x="590" y="220" width="40" height="190" fill="#C8FF3E" opacity="0.7"/>
+  <text x="60" y="470" fill="#FF6B4A" font-family="system-ui,sans-serif" font-size="14" font-weight="600">INSIGHT METRICS</text>
+</svg>

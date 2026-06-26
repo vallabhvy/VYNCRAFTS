@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none">
+  <rect width="800" height="500" fill="#0D100D"/>
+  <rect x="40" y="40" width="720" height="420" rx="12" fill="#13131A" stroke="rgba(255,255,255,0.08)"/>
+  <rect x="60" y="70" width="420" height="360" rx="8" fill="#16201A"/>
+  <rect x="80" y="100" width="360" height="48" rx="24" fill="rgba(200,255,62,0.12)"/>
+  <rect x="96" y="116" width="180" height="16" rx="3" fill="rgba(200,255,62,0.6)"/>
+  <rect x="200" y="170" width="280" height="48" rx="24" fill="rgba(91,79,255,0.15)"/>
+  <rect x="80" y="240" width="320" height="48" rx="24" fill="rgba(200,255,62,0.1)"/>
+  <rect x="500" y="70" width="240" height="360" rx="8" fill="rgba(200,255,62,0.06)" stroke="rgba(200,255,62,0.2)"/>
+  <circle cx="620" cy="150" r="36" fill="rgba(200,255,62,0.25)"/>
+  <rect x="540" y="210" width="160" height="12" rx="3" fill="rgba(238,238,242,0.12)"/>
+  <rect x="540" y="232" width="120" height="12" rx="3" fill="rgba(238,238,242,0.06)"/>
+  <text x="60" y="470" fill="#C8FF3E" font-family="system-ui,sans-serif" font-size="14" font-weight="600">PULSE AI SUPPORT</text>
+</svg>

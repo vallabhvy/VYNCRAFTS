@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none">
+  <rect width="800" height="500" fill="#0D0D14"/>
+  <rect x="40" y="40" width="720" height="420" rx="12" fill="#13131A" stroke="rgba(255,255,255,0.08)"/>
+  <rect x="80" y="100" width="640" height="32" rx="4" fill="#5B4FFF" opacity="0.85"/>
+  <rect x="80" y="160" width="480" height="16" rx="3" fill="rgba(238,238,242,0.15)"/>
+  <rect x="80" y="190" width="400" height="16" rx="3" fill="rgba(238,238,242,0.08)"/>
+  <rect x="80" y="240" width="200" height="48" rx="24" fill="#5B4FFF"/>
+  <rect x="300" y="240" width="200" height="48" rx="24" fill="transparent" stroke="rgba(255,255,255,0.15)"/>
+  <rect x="80" y="320" width="640" height="100" rx="8" fill="rgba(91,79,255,0.08)" stroke="rgba(91,79,255,0.2)"/>
+  <text x="60" y="470" fill="#5B4FFF" font-family="system-ui,sans-serif" font-size="14" font-weight="600">CLEARPATH SERVICES</text>
+</svg>
