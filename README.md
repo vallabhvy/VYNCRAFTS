@@ -34,12 +34,14 @@ Netlify hosts the static site on a global CDN (always fast, no sleep) and runs t
    - **Publish directory:** `dist`
 4. Open **Site configuration** → **Environment variables** and add:
 
-| Variable | Value |
-|---|---|
-| `RESEND_API_KEY` | Your Resend API key |
-| `CONTACT_NOTIFY_EMAIL` | `team@vyncrafts.com` |
-| `CONTACT_FROM_EMAIL` | `VynCrafts <team@vyncrafts.com>` |
-| `NODE_ENV` | `production` |
+| Variable | Value | Secret? |
+|---|---|---|
+| `RESEND_API_KEY` | Your Resend API key | **Yes** — mark as secret |
+| `CONTACT_NOTIFY_EMAIL` | `team@vyncrafts.com` | No — this email is public on the site |
+| `CONTACT_FROM_EMAIL` | `VynCrafts <team@vyncrafts.com>` | No |
+| `NODE_ENV` | `production` | No |
+
+   Only mark `RESEND_API_KEY` as a secret. If Netlify flags `CONTACT_NOTIFY_EMAIL` during the build, it’s because that address already appears in the public JavaScript bundle — that’s expected.
 
 5. Click **Deploy site**
 6. Optional: under **Domain management**, add `vyncrafts.com` and follow the DNS steps

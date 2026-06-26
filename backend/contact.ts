@@ -8,6 +8,11 @@ export type ContactPayload = {
 
 export type ContactSubmission = Required<ContactPayload> & { submittedAt: string }
 
+// Dynamic access prevents Netlify's bundler from inlining secrets at build time.
+function env(name: string): string | undefined {
+  return process.env[name]
+}
+
 const businessLabels: Record<string, string> = {
   restaurant: 'Restaurant',
   retail: 'Retail',
@@ -70,9 +75,9 @@ function buildEmailHtml(submission: ContactSubmission) {
 }
 
 async function notifyTeam(submission: ContactSubmission) {
-  const resendApiKey = process.env.RESEND_API_KEY
-  const notifyEmail = process.env.CONTACT_NOTIFY_EMAIL ?? 'team@vyncrafts.com'
-  const fromEmail = process.env.CONTACT_FROM_EMAIL ?? 'VynCrafts <onboarding@resend.dev>'
+  const resendApiKey = env('RESEND_API_KEY')
+  const notifyEmail = env('CONTACT_NOTIFY_EMAIL') ?? 'team@vyncrafts.com'
+  const fromEmail = env('CONTACT_FROM_EMAIL') ?? 'VynCrafts <onboarding@resend.dev>'
 
   if (!resendApiKey) {
     console.warn('RESEND_API_KEY is not set. Submission logged only.')
@@ -142,7 +147,7 @@ export async function processContactSubmission(body: ContactPayload): Promise<Co
       body: {
         error:
           'Your message was received, but we could not send the notification email. Please try WhatsApp or email us directly.',
-        details: process.env.NODE_ENV === 'production' ? undefined : details,
+        details: env('NODE_ENV') === 'production' ? undefined : details,
       },
     }
   }

@@ -5,6 +5,8 @@
 
 [build.environment]
   NODE_VERSION = "20"
+  # Public site content includes team@vyncrafts.com — only RESEND_API_KEY is a real secret.
+  SECRETS_SCAN_OMIT_KEYS = "CONTACT_NOTIFY_EMAIL,CONTACT_FROM_EMAIL,NODE_ENV,NODE_VERSION"
 
 [[redirects]]
   from = "/api/contact"
