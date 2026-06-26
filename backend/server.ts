@@ -88,19 +88,34 @@ function validatePayload(body: ContactPayload) {
   return errors
 }
 
+function escapeHtml(value: string) {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;')
+}
+
 function buildEmailHtml(submission: Required<ContactPayload> & { submittedAt: string }) {
   const business = businessLabels[submission.business] ?? submission.business
   const budget = budgetLabels[submission.budget] ?? submission.budget
+  const name = escapeHtml(submission.name)
+  const email = escapeHtml(submission.email)
+  const businessLabel = escapeHtml(business)
+  const budgetLabel = escapeHtml(budget)
+  const submittedAt = escapeHtml(submission.submittedAt)
+  const description = escapeHtml(submission.description).replace(/\n/g, '<br>')
 
   return `
     <h2>New project inquiry</h2>
-    <p><strong>Name:</strong> ${submission.name}</p>
-    <p><strong>Email:</strong> <a href="mailto:${submission.email}">${submission.email}</a></p>
-    <p><strong>Business type:</strong> ${business}</p>
-    <p><strong>Budget:</strong> ${budget}</p>
-    <p><strong>Submitted:</strong> ${submission.submittedAt}</p>
+    <p><strong>Name:</strong> ${name}</p>
+    <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
+    <p><strong>Business type:</strong> ${businessLabel}</p>
+    <p><strong>Budget:</strong> ${budgetLabel}</p>
+    <p><strong>Submitted:</strong> ${submittedAt}</p>
     <h3>Project description</h3>
-    <p>${submission.description.replace(/\n/g, '<br>')}</p>
+    <p>${description}</p>
   `
 }
 
@@ -120,7 +135,7 @@ async function notifyTeam(submission: Required<ContactPayload> & { submittedAt: 
       from: fromEmail,
       to: [notifyEmail],
       reply_to: submission.email,
-      subject: `New inquiry from ${submission.name}`,
+      subject: `New inquiry from ${submission.name.replace(/[\r\n]+/g, ' ').trim()}`,
       html: buildEmailHtml(submission),
     }),
   })
