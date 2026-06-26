@@ -23,7 +23,38 @@ SERVE_STATIC=true pnpm run start
 
 Open `http://localhost:5000` — serves the built site and `/api/contact`.
 
-## Deploy to Railway (recommended — no 15‑min sleep)
+## Deploy to Netlify (recommended — free)
+
+Netlify hosts the static site on a global CDN (always fast, no sleep) and runs the contact form as a **serverless function** — no paid hosting required.
+
+1. Go to [netlify.com](https://netlify.com) and sign in with GitHub
+2. **Add new site** → **Import an existing project** → select **`vallabhvy/VYNCRAFTS`**
+3. Netlify reads [`netlify.toml`](netlify.toml) automatically:
+   - **Build command:** `pnpm run build`
+   - **Publish directory:** `dist`
+4. Open **Site configuration** → **Environment variables** and add:
+
+| Variable | Value |
+|---|---|
+| `RESEND_API_KEY` | Your Resend API key |
+| `CONTACT_NOTIFY_EMAIL` | `team@vyncrafts.com` |
+| `CONTACT_FROM_EMAIL` | `VynCrafts <team@vyncrafts.com>` |
+| `NODE_ENV` | `production` |
+
+5. Click **Deploy site**
+6. Optional: under **Domain management**, add `vyncrafts.com` and follow the DNS steps
+
+The contact form posts to `/api/contact`, which Netlify routes to the function in [`netlify/functions/contact.ts`](netlify/functions/contact.ts).
+
+Do **not** set `RESEND_SKIP_TLS_VERIFY` in production.
+
+### Custom domain (`vyncrafts.com`) on Netlify
+
+1. **Domain management** → **Add a domain** → enter `vyncrafts.com`
+2. Add the DNS records Netlify shows at your registrar (usually an `A` record and/or `CNAME` for `www`)
+3. Wait for SSL to provision (usually a few minutes)
+
+## Deploy to Railway (paid — no 15‑min sleep)
 
 Railway keeps your service running 24/7 on the **Hobby plan ($5/mo)**. Unlike Render’s free tier, it does **not** spin down after inactivity (unless you turn on **Serverless** in service settings).
 
